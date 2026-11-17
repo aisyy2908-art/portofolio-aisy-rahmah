@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aisy.dev — Aisy Rahmah | Personal Portfolio</title>
+  <meta name="description" content="Personal portfolio of Aisy Rahmah, Software Engineering (SMK RPL) student & web developer specializing in PHP, MySQL, and responsive UI/UX design." />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFFDFB',
+            ink: '#2A2E2A',
+            muted: '#556157',
+            matcha: {
+              DEFAULT: '#5A7D50',
+              dark: '#3E5937',
+              soft: '#EBF2E8',
+              border: '#D3E2CE',
+            },
+            strawberry: {
+              soft: '#F8DCE3',
+              DEFAULT: '#E5899B',
+              deep: '#D46A80',
+              tint: '#FDF3F6',
+            }
+          },
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(42, 46, 42, 0.06)',
+            card: '0 20px 45px -15px rgba(90, 125, 80, 0.14)',
+            glass: '0 8px 24px -4px rgba(42, 46, 42, 0.08)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Base styling & strict horizontal overflow prevention for 360px+ mobile screens */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #FFFDFB;
+      color: #2A2E2A;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    section[id] {
+      scroll-margin-top: 5.25rem;
+    }
+
+    /* Unified Double-Lined Vertical Arch Photo Frame (Hero & About) */
+    .arch-frame-outer {
+      width: 100%;
+      max-width: 360px;
+      padding: 12px;
+      border: 1.5px solid #E5899B;
+      border-radius: 999px 999px 32px 32px;
+      background: linear-gradient(
+        155deg,
+        rgba(248, 220, 227, 0.38) 0%,
+        rgba(255, 253, 251, 0.72) 50%,
+        rgba(235, 242, 232, 0.48) 100%
+      );
+    }
+
+    .arch-frame-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 999px 999px 24px 24px;
+      border: 6px solid #FFFFFF;
+      box-shadow: 0 18px 40px -12px rgba(42, 46, 42, 0.14);
+      overflow: hidden;
+      background-color: #EBF2E8;
+    }
+
+    .arch-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    /* Subtle floating motion for glassmorphism skill pills */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes floatSlowDelayed {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .pill-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+
+    .pill-float-delayed {
+      animation: floatSlowDelayed 5.2s ease-in-out 1.1s infinite;
+    }
+
+    /* Delicate dot pattern for contact backdrop */
+    .bg-matcha-dots {
+      background-image: radial-gradient(#D3E2CE 1.15px, transparent 1.15px);
+      background-size: 22px 22px;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-strawberry-soft selection:text-ink">
+
+  <!-- ==================== 1. STICKY GLASSMORPHISM NAVBAR ==================== -->
+  <header class="sticky top-0 z-50 w-full bg-cream/90 backdrop-blur-md border-b border-matcha-border/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Brand Logo 'Aisy Rahmah.' with Matcha Green & Strawberry Pink Dots -->
+        <a href="#home" class="inline-flex items-center gap-2 group focus:outline-none">
+          <span class="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-ink">
+            Aisy Rahmah<span class="text-matcha">.</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5" aria-hidden="true">
+            <span class="w-2 h-2 rounded-full bg-matcha-dark group-hover:scale-125 transition-transform"></span>
+            <span class="w-2 h-2 rounded-full bg-strawberry group-hover:scale-125 transition-transform"></span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary Navigation">
+          <a href="#about" class="px-3.5 py-2 rounded-full text-sm font-medium text-muted hover:text-matcha-dark hover:bg-matcha-soft transition-colors">About</a>
+          <a href="#experience" class="px-3.5 py-2 rounded-full text-sm font-medium text-muted hover:text-matcha-dark hover:bg-matcha-soft transition-colors">Experience</a>
+          <a href="#projects" class="px-3.5 py-2 rounded-full text-sm font-medium text-muted hover:text-matcha-dark hover:bg-matcha-soft transition-colors">Projects</a>
+          <a href="#skills" class="px-3.5 py-2 rounded-full text-sm font-medium text-muted hover:text-matcha-dark hover:bg-matcha-soft transition-colors">Skills</a>
+          <a href="#contact" class="ml-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-matcha-dark text-white hover:bg-matcha shadow-xs transition-all">
+            Contact
+          </a>
+        </nav>
+
+        <!-- Mobile Hamburger Button (<= 768px) -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="md:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-ink bg-white border border-matcha-border hover:bg-matcha-soft focus:outline-none focus:ring-2 focus:ring-matcha/30 transition"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <svg id="hamburger-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="hamburger-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-matcha-border shadow-soft">
+      <div class="px-4 pt-3 pb-6 space-y-1.5">
+        <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-ink hover:bg-matcha-soft hover:text-matcha-dark transition">About</a>
+        <a href="#experience" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-ink hover:bg-matcha-soft hover:text-matcha-dark transition">Experience</a>
+        <a href="#projects" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-ink hover:bg-matcha-soft hover:text-matcha-dark transition">Projects</a>
+        <a href="#skills" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-ink hover:bg-matcha-soft hover:text-matcha-dark transition">Skills</a>
+        <div class="pt-2">
+          <a href="#contact" class="mobile-nav-link block w-full text-center px-5 py-3.5 rounded-full text-base font-semibold bg-matcha-dark text-white hover:bg-matcha transition">
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== 2. HERO SECTION (#home) ==================== -->
+    <section id="home" class="relative overflow-hidden pt-10 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+      <!-- Ambient Strawberry Matcha Glow Blobs -->
+      <div class="pointer-events-none absolute -top-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-matcha-soft/85 blur-3xl"></div>
+      <div class="pointer-events-none absolute top-20 -right-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-strawberry-soft/75 blur-3xl"></div>
+
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+          <!-- Left Column: Availability Badge, Bold Heading, Bio, CTAs & 3 Stat Pills -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Availability Pill Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-matcha-border shadow-soft">
+              <span class="relative flex h-2.5 w-2.5 shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-matcha opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-matcha"></span>
+              </span>
+              <span class="text-xs sm:text-sm font-semibold text-ink tracking-wide">
+                Available for Opportunities &bull; 2026
+              </span>
+            </div>
+
+            <!-- English Headline -->
+            <h1 class="font-heading text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-ink leading-[1.15] tracking-tight">
+              Hi, I’m <span class="text-matcha">Aisy Rahmah</span> — Building Thoughtful Web &amp; UI/UX Experiences
+            </h1>
+
+            <!-- Concise English Bio Paragraph -->
+            <p class="text-base sm:text-lg text-muted leading-relaxed max-w-2xl">
+              An SMK Software Engineering (Rekayasa Perangkat Lunak) student passionate about crafting end-to-end web applications, structured MySQL databases, and responsive, user-centered interfaces.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
+              <a
+                href="#projects"
+                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-matcha-dark text-white font-semibold text-sm sm:text-base shadow-card hover:bg-matcha hover:-translate-y-0.5 transition-all"
+              >
+                <span>Explore Projects</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-white text-ink font-semibold text-sm sm:text-base border border-matcha-border hover:border-strawberry hover:bg-strawberry-tint transition-all"
+              >
+                <span>Get in Touch</span>
+              </a>
+            </div>
+
+            <!-- 3 Highlight Stat Pills -->
+            <div class="pt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+              <div class="p-3.5 rounded-2xl bg-white border border-matcha-border shadow-soft flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha shrink-0"></span>
+                <span class="text-xs sm:text-sm font-bold text-ink">3+ Featured Projects</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-white border border-strawberry-soft shadow-soft flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-strawberry shrink-0"></span>
+                <span class="text-xs sm:text-sm font-bold text-ink">PKL 2026 Maybank Finance</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-white border border-matcha-border shadow-soft flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha-dark shrink-0"></span>
+                <span class="text-xs sm:text-sm font-bold text-ink">SMK RPL Major</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Double-Layered Strawberry Matcha Arch Portrait Frame -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-[360px] flex justify-center">
+
+              <!-- Floating Glassmorphism Skill Pill 1: PHP & MySQL -->
+              <div class="pill-float absolute top-3 left-1 sm:-left-3 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-matcha-border shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha"></span>
+                <span class="text-xs font-bold text-ink">PHP &amp; MySQL</span>
+              </div>
+
+              <!-- Floating Glassmorphism Skill Pill 2: Figma UI/UX -->
+              <div class="pill-float-delayed absolute top-1/2 -translate-y-1/2 right-1 sm:-right-3 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-strawberry-soft shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-strawberry"></span>
+                <span class="text-xs font-bold text-ink">Figma UI/UX</span>
+              </div>
+
+              <!-- Floating Glassmorphism Skill Pill 3: Responsive Web -->
+              <div class="pill-float absolute -bottom-2.5 left-3 sm:left-4 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-matcha-border shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha-dark"></span>
+                <span class="text-xs font-bold text-ink">Responsive Web</span>
+              </div>
+
+              <!-- Double-Lined Vertical Arch Portrait Frame -->
+              <div class="arch-frame-outer">
+                <div class="arch-frame-inner">
+                  <!-- Place your photo named "foto-profil.jpg" in the same folder as index.html -->
+                  <img
+                    src="foto profil.jpeg"
+                    alt="Aisy Rahmah Profile"
+                    class="arch-photo-img"
+                    style="width:100%; height:100%; object-fit:cover; object-position:center 20%;"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 360 480%22%3E%3Cdefs%3E%3ClinearGradient id=%22heroGrad%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23F8DCE3%22/%3E%3Cstop offset=%2250%25%22 stop-color=%22%23FFFDFB%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23EBF2E8%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22360%22 height=%22480%22 fill=%22url(%23heroGrad)%22/%3E%3Ccircle cx=%22295%22 cy=%2290%22 r=%2258%22 fill=%22%23F8DCE3%22 opacity=%220.65%22/%3E%3Ccircle cx=%2268%22 cy=%22395%22 r=%2276%22 fill=%22%23EBF2E8%22 opacity=%220.85%22/%3E%3Ccircle cx=%22180%22 cy=%22182%22 r=%2256%22 fill=%22%235A7D50%22/%3E%3Cpath d=%22M80 425 C80 338 126 284 180 284 C234 284 280 338 280 425 Z%22 fill=%22%235A7D50%22/%3E%3Ccircle cx=%22180%22 cy=%22182%22 r=%2243%22 fill=%22%23FFFDFB%22/%3E%3Ctext x=%22180%22 y=%22194%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2232%22 fill=%22%233E5937%22%3EAR%3C/text%3E%3Crect x=%2268%22 y=%22416%22 width=%22224%22 height=%2232%22 rx=%2216%22 fill=%22%23FFFFFF%22 stroke=%22%23D3E2CE%22/%3E%3Ctext x=%22180%22 y=%22436%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22600%22 font-size=%2212%22 fill=%22%232A2E2A%22%3Efoto-profil.jpg%3C/text%3E%3C/svg%3E';"
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. ABOUT ME & PERSONAL BIODATA SECTION (#about) ==================== -->
+    <section id="about" class="py-16 sm:py-24 bg-white border-y border-matcha-border/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+          <!-- Left Column: Matching Double-Lined Arch Photo Frame & Floating Glassmorphism Pills -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-[360px] flex justify-center">
+
+              <!-- Floating Glassmorphism Pill 1: SMK RPL Student -->
+              <div class="pill-float absolute top-3 left-1 sm:-left-3 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-matcha-border shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha"></span>
+                <span class="text-xs font-bold text-ink">SMK RPL Student</span>
+              </div>
+
+              <!-- Floating Glassmorphism Pill 2: Maybank Intern '26 -->
+              <div class="pill-float-delayed absolute top-1/2 -translate-y-1/2 right-1 sm:-right-3 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-strawberry-soft shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-strawberry"></span>
+                <span class="text-xs font-bold text-ink">Maybank Intern '26</span>
+              </div>
+
+              <!-- Floating Glassmorphism Pill 3: North Jakarta, ID -->
+              <div class="pill-float absolute -bottom-2.5 left-3 sm:left-4 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/85 backdrop-blur-md border border-matcha-border shadow-glass">
+                <span class="w-2.5 h-2.5 rounded-full bg-matcha-dark"></span>
+                <span class="text-xs font-bold text-ink">North Jakarta, ID</span>
+              </div>
+
+              <!-- Double-Lined Vertical Arch Photo Frame -->
+              <div class="arch-frame-outer">
+                <div class="arch-frame-inner">
+                  <!-- Place your photo named "foto-about.jpg" in the same folder as index.html -->
+                  <img
+                    src="foto about.jpeg"
+                    alt="About Aisy Rahmah"
+                    class="arch-photo-img"
+                    style="width:100%; height:100%; object-fit:cover; object-position:center 20%;"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 360 480%22%3E%3Cdefs%3E%3ClinearGradient id=%22aboutGrad%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23EBF2E8%22/%3E%3Cstop offset=%2250%25%22 stop-color=%22%23FFFDFB%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23F8DCE3%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22360%22 height=%22480%22 fill=%22url(%23aboutGrad)%22/%3E%3Ccircle cx=%2268%22 cy=%2295%22 r=%2256%22 fill=%22%23EBF2E8%22 opacity=%220.85%22/%3E%3Ccircle cx=%22295%22 cy=%22395%22 r=%2274%22 fill=%22%23F8DCE3%22 opacity=%220.65%22/%3E%3Ccircle cx=%22180%22 cy=%22182%22 r=%2256%22 fill=%22%235A7D50%22/%3E%3Cpath d=%22M80 425 C80 338 126 284 180 284 C234 284 280 338 280 425 Z%22 fill=%22%235A7D50%22/%3E%3Ccircle cx=%22180%22 cy=%22182%22 r=%2243%22 fill=%22%23FFFDFB%22/%3E%3Ctext x=%22180%22 y=%22194%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2232%22 fill=%22%233E5937%22%3EAR%3C/text%3E%3Crect x=%2268%22 y=%22416%22 width=%22224%22 height=%2232%22 rx=%2216%22 fill=%22%23FFFFFF%22 stroke=%22%23E5899B%22/%3E%3Ctext x=%22180%22 y=%22436%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22600%22 font-size=%2212%22 fill=%22%232A2E2A%22%3Efoto-about.jpg%3C/text%3E%3C/svg%3E';"
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Column: ABOUT ME Eyebrow, Summary & 2-Column Personal Biodata Card -->
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-strawberry-tint text-strawberry-deep border border-strawberry-soft mb-3">
+                ABOUT ME
+              </span>
+              <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight">
+                Crafting Digital Solutions with Precision &amp; Empathy
+              </h2>
+              <p class="mt-3.5 text-sm sm:text-base text-muted leading-relaxed">
+                I am Aisy Rahmah, a Software Engineering (Rekayasa Perangkat Lunak / RPL) vocational student based in North Jakarta, Indonesia. I enjoy transforming ideas into reliable web applications—combining clean PHP &amp; MySQL architecture with thoughtful UI/UX design and real-world corporate workflow discipline gained during my 2026 Human Capital internship at PT Maybank Indonesia Finance.
+              </p>
+            </div>
+
+            <!-- Clean 2-Column Personal Biodata Card (1-Column on Small Phones) -->
+            <div class="bg-cream rounded-3xl border border-matcha-border p-5 sm:p-7 shadow-soft">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-matcha-border/80">
+                <h3 class="font-heading text-base sm:text-lg font-bold text-ink flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-matcha"></span>
+                  Personal Biodata
+                </h3>
+                <span class="text-xs font-semibold text-matcha-dark bg-matcha-soft px-3 py-1 rounded-full">
+                  RPL Portfolio
+                </span>
+              </div>
+
+              <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm">
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Full Name</dt>
+                  <dd class="mt-1 font-bold text-ink">Aisy Rahmah</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Location</dt>
+                  <dd class="mt-1 font-bold text-ink">North Jakarta, Indonesia</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Education</dt>
+                  <dd class="mt-1 font-bold text-ink">SMK — Software Engineering (RPL)</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-strawberry-soft">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-strawberry-deep">Internship</dt>
+                  <dd class="mt-1 font-bold text-ink">PT Maybank Indonesia Finance, 2026</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Specialization</dt>
+                  <dd class="mt-1 font-bold text-ink">Full-Stack Web &amp; UI/UX Design</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Email</dt>
+                  <dd class="mt-1 font-bold text-matcha-dark break-all">aisyy2908@gmail.com</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Languages</dt>
+                  <dd class="mt-1 font-bold text-ink">Indonesian (Native), English (Intermediate)</dd>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-matcha-border/70">
+                  <dt class="text-[11px] font-bold uppercase tracking-wider text-muted">Status</dt>
+                  <dd class="mt-1 font-bold text-matcha-dark">Open to Junior Roles &amp; Freelance</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. EDUCATION & INDUSTRY EXPERIENCE SECTION (#experience) ==================== -->
+    <section id="experience" class="py-16 sm:py-24 bg-cream border-b border-matcha-border/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="max-w-2xl mb-10 sm:mb-12">
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-matcha-soft text-matcha-dark border border-matcha-border mb-3">
+            BACKGROUND &amp; JOURNEY
+          </span>
+          <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight">
+            Education &amp; Industry Experience
+          </h2>
+          <p class="mt-2.5 text-sm sm:text-base text-muted leading-relaxed">
+            Combining formal software engineering training with hands-on corporate workflow experience.
+          </p>
+        </div>
+
+        <!-- Two Equal-Height Side-by-Side Rounded Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+
+          <!-- Left Card: Vocational High School (SMK) -->
+          <article class="bg-[#F8FAF7] rounded-[28px] border border-[#E2EAE0] p-7 sm:p-9 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <!-- Top Header Row: Matcha Graduation Cap Icon Badge + Pill Badge -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-7">
+                <div class="w-12 h-12 rounded-2xl bg-[#E5EFE4] text-matcha-dark flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 9v6" />
+                  </svg>
+                </div>
+
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-matcha-dark border border-[#DCE5DA]">
+                  Education &amp; Background
+                </span>
+              </div>
+
+              <!-- Title & Subtitle -->
+              <h3 class="font-heading text-xl sm:text-2xl font-bold text-ink tracking-tight">
+                Vocational High School (SMK)
+              </h3>
+              <p class="mt-1 text-sm sm:text-[15px] font-semibold text-matcha-dark">
+                Major in Software Engineering (Rekayasa Perangkat Lunak)
+              </p>
+
+              <!-- Description Paragraph -->
+              <p class="mt-4 text-sm sm:text-[15px] text-muted leading-relaxed">
+                Focused on building end-to-end web applications, relational database modeling, and intuitive front-end layouts. Through hands-on lab projects, I design normalized schemas, write clean server-side logic in PHP, and craft accessible user interfaces.
+              </p>
+            </div>
+
+            <!-- Subtle Divider & Bottom Pill Tags -->
+            <div class="mt-7 pt-5 border-t border-[#E3EAE1] flex flex-wrap gap-2">
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                End-to-End Web Apps
+              </span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                Relational Database Modeling
+              </span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                UI/UX Prototyping
+              </span>
+            </div>
+          </article>
+
+          <!-- Right Card: Human Capital Intern -->
+          <article class="bg-[#F8FAF7] rounded-[28px] border border-[#E2EAE0] p-7 sm:p-9 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <!-- Top Header Row: Strawberry Office Building Icon Badge + Blush Pill Badge -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-7">
+                <div class="w-12 h-12 rounded-2xl bg-[#F9DCE3] text-strawberry-deep flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01" />
+                  </svg>
+                </div>
+
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#FDF0F4] text-[#5C3A42] border border-[#F5CBD6]">
+                  Internship Experience &bull; 2026
+                </span>
+              </div>
+
+              <!-- Title & Subtitle -->
+              <h3 class="font-heading text-xl sm:text-2xl font-bold text-ink tracking-tight">
+                Human Capital Intern
+              </h3>
+              <p class="mt-1 text-sm sm:text-[15px] font-semibold text-strawberry">
+                PT Maybank Indonesia Finance (2026)
+              </p>
+
+              <!-- Description Paragraph -->
+              <p class="mt-4 text-sm sm:text-[15px] text-muted leading-relaxed">
+                Gained hands-on corporate experience supporting Human Capital administrative workflows, structured data management, and professional reporting. Collaborated within a fast-paced enterprise environment while strengthening organizational accuracy and communication skills.
+              </p>
+            </div>
+
+            <!-- Subtle Divider & Bottom Pill Tags -->
+            <div class="mt-7 pt-5 border-t border-[#E3EAE1] flex flex-wrap gap-2">
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                HC Workflows
+              </span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                Structured Data Management
+              </span>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-ink border border-[#DCE5DA]">
+                Professional Reporting
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. FEATURED PROJECTS SECTION (#projects) ==================== -->
+    <section id="projects" class="py-16 sm:py-24 bg-white border-b border-matcha-border/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header & Interactive Category Filter Pills -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+          <div>
+            <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-matcha-soft text-matcha-dark border border-matcha-border mb-3">
+              Portfolio Showcase
+            </span>
+            <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight">
+              Featured Projects
+            </h2>
+            <p class="mt-2.5 text-sm sm:text-base text-muted max-w-xl">
+              Selected database-driven web applications and interactive 3D visualizations developed with structured logic and responsive design.
+            </p>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Project Category Filters">
+            <button
+              type="button"
+              data-filter="all"
+              class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-matcha-dark text-white shadow-xs transition-all cursor-pointer"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              data-filter="web"
+              class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-cream text-muted border border-matcha-border hover:border-matcha hover:text-ink transition-all cursor-pointer"
+            >
+              Web Development
+            </button>
+            <button
+              type="button"
+              data-filter="ui3d"
+              class="filter-btn px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-cream text-muted border border-matcha-border hover:border-matcha hover:text-ink transition-all cursor-pointer"
+            >
+              UI/UX &amp; 3D
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Column Project Cards Grid -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+          <!-- Project 1: RuangSiswa — Student Database System -->
+          <article
+            data-category="web"
+            class="project-card group bg-cream rounded-3xl border border-matcha-border overflow-hidden shadow-soft hover:shadow-card hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+          >
+            <div class="relative h-48 bg-gradient-to-br from-strawberry-tint via-strawberry-soft/75 to-matcha-soft p-5 flex items-center justify-center overflow-hidden border-b border-matcha-border/75">
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/90 text-matcha-dark backdrop-blur-xs">
+                Web Development
+              </span>
+              <!-- Student Portal Mockup Card -->
+              <div class="w-full max-w-[235px] bg-white rounded-2xl shadow-md border border-matcha-border p-3.5 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-strawberry"></span>
+                    <span class="w-2 h-2 rounded-full bg-matcha"></span>
+                    <span class="text-[10px] font-bold text-ink ml-1">RuangSiswa</span>
+                  </div>
+                  <span class="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-strawberry-tint text-strawberry-deep">db_sekolah</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cream border border-matcha-border mb-2">
+                  <svg class="w-3 h-3 text-matcha" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+                  </svg>
+                  <span class="text-[9px] text-muted">Search NIS or student name...</span>
+                </div>
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between px-2 py-1 rounded-md bg-matcha-soft">
+                    <span class="text-[9px] font-semibold text-ink">102401 &bull; Aisy Rahmah</span>
+                    <span class="text-[8px] font-bold text-matcha-dark">XII RPL</span>
+                  </div>
+                  <div class="flex items-center justify-between px-2 py-1 rounded-md bg-strawberry-tint">
+                    <span class="text-[9px] font-semibold text-ink">102402 &bull; Nabila Putri</span>
+                    <span class="text-[8px] font-bold text-strawberry-deep">XII RPL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between bg-white">
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold text-ink group-hover:text-matcha transition-colors">
+                  RuangSiswa — Student Database Web App
+                </h3>
+                <p class="mt-2.5 text-sm text-muted leading-relaxed">
+                  School database web app (<code class="text-xs font-semibold text-matcha-dark bg-matcha-soft px-1.5 py-0.5 rounded">db_sekolah</code>) featuring instant NIS/name search, student record management, and a custom Strawberry Matcha sidebar layout.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-matcha-border/75 flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-matcha-soft text-matcha-dark">PHP</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-matcha-soft text-matcha-dark">MySQL</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-strawberry-tint text-ink">HTML/CSS</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Smart Parking Management System -->
+          <article
+            data-category="web"
+            class="project-card group bg-cream rounded-3xl border border-matcha-border overflow-hidden shadow-soft hover:shadow-card hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+          >
+            <div class="relative h-48 bg-gradient-to-br from-matcha-soft via-cream to-strawberry-tint p-5 flex items-center justify-center overflow-hidden border-b border-matcha-border/75">
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/90 text-matcha-dark backdrop-blur-xs">
+                Web Development
+              </span>
+              <!-- Parking & QRIS Mockup Card -->
+              <div class="w-full max-w-[235px] bg-white rounded-2xl shadow-md border border-matcha-border p-3.5 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] font-bold text-ink">db_parkir &bull; WIB</span>
+                  <span class="px-2 py-0.5 rounded-full text-[8px] font-bold bg-strawberry-tint text-strawberry-deep">2h Free + 10%</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 items-center bg-cream p-2.5 rounded-xl border border-matcha-border">
+                  <div class="col-span-2">
+                    <span class="block text-[8px] uppercase tracking-wider text-muted">Jakarta Timestamp</span>
+                    <span class="inline-block mt-0.5 px-2 py-0.5 rounded bg-ink text-white font-mono text-[10px] font-bold tracking-wider">
+                      B 2026 AR
+                    </span>
+                    <span class="block mt-1 text-[9px] font-semibold text-matcha-dark">QRIS &amp; Receipt</span>
+                  </div>
+                  <div class="col-span-1 flex justify-end">
+                    <div class="w-10 h-10 rounded-lg bg-white border border-matcha-border p-1 grid grid-cols-3 gap-0.5">
+                      <span class="bg-ink rounded-[1px]"></span>
+                      <span class="bg-transparent"></span>
+                      <span class="bg-ink rounded-[1px]"></span>
+                      <span class="bg-transparent"></span>
+                      <span class="bg-matcha rounded-[1px]"></span>
+                      <span class="bg-transparent"></span>
+                      <span class="bg-ink rounded-[1px]"></span>
+                      <span class="bg-strawberry rounded-[1px]"></span>
+                      <span class="bg-ink rounded-[1px]"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between bg-white">
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold text-ink group-hover:text-matcha transition-colors">
+                  Smart Parking Management System
+                </h3>
+                <p class="mt-2.5 text-sm text-muted leading-relaxed">
+                  Automated parking web app (<code class="text-xs font-semibold text-matcha-dark bg-matcha-soft px-1.5 py-0.5 rounded">db_parkir</code>) with license plate member recognition, dynamic tariff rules (first 2 hours free + 10% member discount), Jakarta timestamps, QRIS checkout, and automated receipt printing.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-matcha-border/75 flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-matcha-soft text-matcha-dark">PHP</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-matcha-soft text-matcha-dark">MySQL</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-strawberry-tint text-ink">XAMPP</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: 3D Hardware Component Animation -->
+          <article
+            data-category="ui3d"
+            class="project-card group bg-cream rounded-3xl border border-matcha-border overflow-hidden shadow-soft hover:shadow-card hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+          >
+            <div class="relative h-48 bg-gradient-to-br from-strawberry-tint via-cream to-matcha-soft p-5 flex items-center justify-center overflow-hidden border-b border-matcha-border/75">
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/90 text-strawberry-deep backdrop-blur-xs">
+                UI/UX &amp; 3D
+              </span>
+              <!-- Isometric 3D Hardware Component Illustration -->
+              <div class="transform group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <svg class="w-40 h-32" viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M90 125 L25 90 L90 55 L155 90 Z" fill="#EBF2E8" stroke="#5A7D50" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M25 90 L25 98 L90 133 L155 98 L155 90" fill="#5A7D50" opacity="0.2" />
+                  <path d="M55 88 L75 78 M105 78 L125 88 M72 102 L90 112 L108 102" stroke="#5A7D50" stroke-width="1.5" stroke-linecap="round" />
+                  <g>
+                    <path d="M90 66 L52 46 L90 26 L128 46 Z" fill="#FFFFFF" stroke="#5A7D50" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M52 46 L52 56 L90 76 L128 56 L128 46" fill="#F8DCE3" stroke="#5A7D50" stroke-width="1.8" stroke-linejoin="round" />
+                    <path d="M90 55 L70 45 L90 35 L110 45 Z" fill="#5A7D50" />
+                    <line x1="90" y1="76" x2="90" y2="92" stroke="#E5899B" stroke-width="1.8" stroke-dasharray="3 3" />
+                    <circle cx="90" cy="92" r="3" fill="#E5899B" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between bg-white">
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-bold text-ink group-hover:text-matcha transition-colors">
+                  3D Hardware Component Animation
+                </h3>
+                <p class="mt-2.5 text-sm text-muted leading-relaxed">
+                  Unity 3D modeling and interactive component assembly animation paired with technical visualization, draw.io architecture flows, and Figma UI wireframes.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-matcha-border/75 flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-strawberry-tint text-ink">Unity 3D</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-matcha-soft text-matcha-dark">draw.io</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-strawberry-tint text-ink">Figma</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. TECHNICAL SKILLS BENTO GRID (#skills) ==================== -->
+    <section id="skills" class="py-16 sm:py-24 bg-cream border-b border-matcha-border/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="max-w-2xl mb-10 sm:mb-12">
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-strawberry-tint text-strawberry-deep border border-strawberry-soft mb-3">
+            Capabilities
+          </span>
+          <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink tracking-tight">
+            Technical Skills &amp; Tools
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-muted">
+            A balanced blend of full-stack web technologies, system modeling tools, and collaborative workplace workflows.
+          </p>
+        </div>
+
+        <!-- 4-Card Bento Grid (1 col mobile -> 2 col tablet/desktop) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Bento Card 1: Frontend & Responsive Web -->
+          <div class="bg-white rounded-3xl border border-matcha-border p-6 sm:p-7 shadow-soft flex flex-col justify-between hover:border-strawberry transition-colors">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-strawberry-tint border border-strawberry-soft text-strawberry-deep flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg sm:text-xl font-bold text-ink">
+                Frontend &amp; Responsive Web
+              </h3>
+              <p class="mt-1.5 text-xs sm:text-sm text-muted">
+                Building clean, adaptive web interfaces across mobile, tablet, and desktop screens.
+              </p>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">HTML5</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">CSS3</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">JavaScript</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-strawberry-tint text-ink border border-strawberry-soft">Responsive Grid/Flexbox</span>
+            </div>
+          </div>
+
+          <!-- Bento Card 2: Backend & Databases -->
+          <div class="bg-white rounded-3xl border border-matcha-border p-6 sm:p-7 shadow-soft flex flex-col justify-between hover:border-matcha transition-colors">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-matcha-dark text-white flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg sm:text-xl font-bold text-ink">
+                Backend &amp; Databases
+              </h3>
+              <p class="mt-1.5 text-xs sm:text-sm text-muted">
+                Designing relational schemas, CRUD operations, and server-side application logic.
+              </p>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-matcha-soft text-matcha-dark border border-matcha-border">PHP</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-matcha-soft text-matcha-dark border border-matcha-border">MySQL</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">XAMPP</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">CRUD &amp; Relational Design</span>
+            </div>
+          </div>
+
+          <!-- Bento Card 3: UI/UX & System Design -->
+          <div class="bg-white rounded-3xl border border-matcha-border p-6 sm:p-7 shadow-soft flex flex-col justify-between hover:border-matcha transition-colors">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-matcha-soft text-matcha-dark border border-matcha-border flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg sm:text-xl font-bold text-ink">
+                UI/UX &amp; System Design
+              </h3>
+              <p class="mt-1.5 text-xs sm:text-sm text-muted">
+                Prototyping user journeys, system architecture diagrams, and clean wireframes.
+              </p>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-strawberry-tint text-ink border border-strawberry-soft">Figma</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">draw.io User Flows</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-matcha-soft text-matcha-dark border border-matcha-border">Wireframing</span>
+            </div>
+          </div>
+
+          <!-- Bento Card 4: Tools & Workflow -->
+          <div class="bg-white rounded-3xl border border-matcha-border p-6 sm:p-7 shadow-soft flex flex-col justify-between hover:border-strawberry transition-colors">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-strawberry text-white flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg sm:text-xl font-bold text-ink">
+                Tools &amp; Workflow
+              </h3>
+              <p class="mt-1.5 text-xs sm:text-sm text-muted">
+                Modern development environments, 3D engines, and structured corporate reporting.
+              </p>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">VS Code</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-strawberry-tint text-ink border border-strawberry-soft">Unity 3D</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cream text-ink border border-matcha-border">Git/GitHub</span>
+              <span class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-matcha-soft text-matcha-dark border border-matcha-border">Office &amp; HC Reporting</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. CONTACT SECTION (#contact) ==================== -->
+    <section id="contact" class="py-16 sm:py-24 bg-matcha-dots">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl border border-matcha-border shadow-card overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+
+            <!-- Left Column: Direct Contact Info, Copy Email Button & Social Links -->
+            <div class="lg:col-span-5 bg-matcha-dark text-white p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+              <div class="pointer-events-none absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-white/10"></div>
+              <div class="pointer-events-none absolute -top-12 -left-12 w-36 h-36 rounded-full bg-strawberry/30"></div>
+
+              <div class="relative">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-matcha-soft mb-4">
+                  Get In Touch
+                </span>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold leading-tight">
+                  Let’s connect &amp; collaborate.
+                </h2>
+                <p class="mt-3.5 text-sm text-matcha-soft leading-relaxed">
+                  Feel free to reach out for junior web developer roles, UI/UX design collaborations, or project inquiries.
+                </p>
+
+                <div class="mt-6 flex items-center gap-2.5 text-xs sm:text-sm text-matcha-soft">
+                  <svg class="w-4 h-4 text-strawberry-soft shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>North Jakarta, Indonesia</span>
+                </div>
+              </div>
+
+              <!-- One-Click Copy Email Box & Social Links -->
+              <div class="relative mt-8 pt-6 border-t border-white/15 space-y-5">
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-matcha-soft/90 font-semibold mb-2.5">
+                    Direct Email
+                  </p>
+                  <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center justify-between gap-2.5 p-3 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xs">
+                    <span id="email-text" class="text-xs sm:text-sm font-medium text-white break-all">
+                      aisyy2908@gmail.com
+                    </span>
+                    <button
+                      id="copy-email-btn"
+                      type="button"
+                      class="shrink-0 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-strawberry-soft text-ink text-xs font-bold hover:bg-white transition-colors cursor-pointer"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <span id="copy-btn-text">Copy Email</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-semibold text-white transition"
+                  >
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-semibold text-white transition"
+                  >
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-semibold text-white transition"
+                  >
+                    <span>Instagram</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Responsive Contact Form -->
+            <div class="lg:col-span-7 p-6 sm:p-10">
+              <h3 class="font-heading text-xl font-bold text-ink mb-1">
+                Send a Message
+              </h3>
+              <p class="text-xs sm:text-sm text-muted mb-6">
+                Leave your name, email, and message below—I’ll get back to you soon.
+              </p>
+
+              <form id="contact-form" class="space-y-4" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="sender-name" class="block text-xs sm:text-sm font-semibold text-ink mb-1.5">
+                      Your Name
+                    </label>
+                    <input
+                      id="sender-name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Enter your name"
+                      class="w-full px-4 py-3 rounded-xl bg-cream border border-matcha-border text-sm text-ink placeholder:text-muted/60 focus:outline-none focus:bg-white focus:border-matcha focus:ring-2 focus:ring-matcha/15 transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="sender-email" class="block text-xs sm:text-sm font-semibold text-ink mb-1.5">
+                      Your Email
+                    </label>
+                    <input
+                      id="sender-email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@example.com"
+                      class="w-full px-4 py-3 rounded-xl bg-cream border border-matcha-border text-sm text-ink placeholder:text-muted/60 focus:outline-none focus:bg-white focus:border-matcha focus:ring-2 focus:ring-matcha/15 transition"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="sender-subject" class="block text-xs sm:text-sm font-semibold text-ink mb-1.5">
+                    Subject
+                  </label>
+                  <input
+                    id="sender-subject"
+                    name="subject"
+                    type="text"
+                    required
+                    placeholder="Project collaboration or job inquiry"
+                    class="w-full px-4 py-3 rounded-xl bg-cream border border-matcha-border text-sm text-ink placeholder:text-muted/60 focus:outline-none focus:bg-white focus:border-matcha focus:ring-2 focus:ring-matcha/15 transition"
+                  />
+                </div>
+
+                <div>
+                  <label for="sender-message" class="block text-xs sm:text-sm font-semibold text-ink mb-1.5">
+                    Message
+                  </label>
+                  <textarea
+                    id="sender-message"
+                    name="message"
+                    rows="4"
+                    required
+                    placeholder="Write your message or inquiry here..."
+                    class="w-full px-4 py-3 rounded-xl bg-cream border border-matcha-border text-sm text-ink placeholder:text-muted/60 focus:outline-none focus:bg-white focus:border-matcha focus:ring-2 focus:ring-matcha/15 transition resize-none"
+                  ></textarea>
+                </div>
+
+                <div class="pt-2">
+                  <button
+                    type="submit"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-matcha-dark text-white font-semibold text-sm shadow-card hover:bg-matcha hover:-translate-y-0.5 transition-all cursor-pointer"
+                  >
+                    <span>Send Message</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 8. FOOTER ==================== -->
+  <footer class="bg-white border-t border-matcha-border py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+        <span class="font-heading text-base font-extrabold text-ink inline-flex items-center gap-1.5">
+          Aisy Rahmah<span class="text-matcha">.</span>
+          <span class="w-2 h-2 rounded-full bg-matcha-dark"></span>
+          <span class="w-2 h-2 rounded-full bg-strawberry"></span>
+        </span>
+        <span class="text-matcha-border">&bull;</span>
+        <p class="text-xs sm:text-sm text-muted">
+          &copy; 2026 Aisy Rahmah. Crafted with Strawberry Matcha Aesthetics.
+        </p>
+      </div>
+
+      <nav class="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-muted" aria-label="Footer Navigation">
+        <a href="#about" class="hover:text-matcha transition-colors">About</a>
+        <a href="#experience" class="hover:text-matcha transition-colors">Experience</a>
+        <a href="#projects" class="hover:text-matcha transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-matcha transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-matcha transition-colors">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ==================== SMOOTH TOAST NOTIFICATION ==================== -->
+  <div
+    id="toast"
+    role="status"
+    aria-live="polite"
+    class="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-sm z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="bg-ink text-white px-4 py-3.5 rounded-2xl shadow-xl border border-white/10 flex items-start gap-3">
+      <div id="toast-icon-box" class="w-7 h-7 rounded-xl bg-matcha flex items-center justify-center shrink-0 mt-0.5">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p id="toast-title" class="text-sm font-bold text-white">Success</p>
+        <p id="toast-msg" class="text-xs text-matcha-soft mt-0.5 leading-relaxed break-words">Action completed.</p>
+      </div>
+      <button id="toast-close" type="button" class="text-white/60 hover:text-white p-1 shrink-0" aria-label="Close notification">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== VANILLA JAVASCRIPT INTERACTIONS ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* 1. Mobile Hamburger Slide-Down Menu */
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('hamburger-open');
+      const iconClose = document.getElementById('hamburger-close');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function toggleMobileMenu(isOpen) {
+        if (isOpen) {
+          mobileMenu.classList.remove('hidden');
+          iconOpen.classList.add('hidden');
+          iconClose.classList.remove('hidden');
+          menuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const currentlyClosed = mobileMenu.classList.contains('hidden');
+        toggleMobileMenu(currentlyClosed);
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => toggleMobileMenu(false));
+      });
+
+      /* 2. Smooth Toast Notification System */
+      const toast = document.getElementById('toast');
+      const toastIconBox = document.getElementById('toast-icon-box');
+      const toastTitle = document.getElementById('toast-title');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastClose = document.getElementById('toast-close');
+      let toastTimeout = null;
+
+      function showToast(title, message, isWarning = false) {
+        toastTitle.textContent = title;
+        toastMsg.textContent = message;
+
+        if (isWarning) {
+          toastIconBox.classList.remove('bg-matcha');
+          toastIconBox.classList.add('bg-strawberry-deep');
+        } else {
+          toastIconBox.classList.remove('bg-strawberry-deep');
+          toastIconBox.classList.add('bg-matcha');
+        }
+
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(hideToast, 4000);
+      }
+
+      function hideToast() {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }
+
+      toastClose.addEventListener('click', hideToast);
+
+      /* 3. Interactive Project Category Filter Tabs */
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selectedFilter = button.getAttribute('data-filter');
+
+          filterButtons.forEach((btn) => {
+            btn.classList.remove('bg-matcha-dark', 'text-white', 'shadow-xs');
+            btn.classList.add('bg-cream', 'text-muted', 'border', 'border-matcha-border');
+          });
+
+          button.classList.remove('bg-cream', 'text-muted', 'border', 'border-matcha-border');
+          button.classList.add('bg-matcha-dark', 'text-white', 'shadow-xs');
+
+          projectCards.forEach((card) => {
+            const cardCategory = card.getAttribute('data-category');
+            if (selectedFilter === 'all' || cardCategory === selectedFilter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      /* 4. One-Click Copy Email Button */
+      const copyEmailBtn = document.getElementById('copy-email-btn');
+      const copyBtnText = document.getElementById('copy-btn-text');
+      const emailValue = document.getElementById('email-text').textContent.trim();
+
+      copyEmailBtn.addEventListener('click', () => {
+        try {
+          const tempInput = document.createElement('textarea');
+          tempInput.value = emailValue;
+          tempInput.setAttribute('readonly', '');
+          tempInput.style.position = 'fixed';
+          tempInput.style.opacity = '0';
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          tempInput.setSelectionRange(0, 99999);
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+
+          copyBtnText.textContent = 'Copied!';
+          showToast('Email Copied!', `${emailValue} has been copied to your clipboard.`);
+
+          setTimeout(() => {
+            copyBtnText.textContent = 'Copy Email';
+          }, 2500);
+        } catch (err) {
+          showToast('Copy Email', `Please copy manually: ${emailValue}`, true);
+        }
+      });
+
+      /* 5. Interactive Message Form Submit */
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const nameVal = document.getElementById('sender-name').value.trim();
+        const emailVal = document.getElementById('sender-email').value.trim();
+        const subjectVal = document.getElementById('sender-subject').value.trim();
+        const messageVal = document.getElementById('sender-message').value.trim();
+
+        if (!nameVal || !emailVal || !subjectVal || !messageVal) {
+          showToast('Missing Information', 'Please complete your name, email, subject, and message.', true);
+          return;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailVal)) {
+          showToast('Invalid Email', 'Please enter a valid email address.', true);
+          return;
+        }
+
+        showToast(
+          'Message Sent!',
+          `Thank you, ${nameVal}! Your message about "${subjectVal}" has been delivered to Aisy Rahmah.`
+        );
+        contactForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>
